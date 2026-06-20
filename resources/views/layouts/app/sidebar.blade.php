@@ -16,7 +16,11 @@
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
                         <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-                        {{ __('Categoty') }}
+                        {{ __('Category') }}
+                    </flux:sidebar.item>
+
+                     <flux:sidebar.item icon="home" :href="route('bookings.index')" :current="request()->routeIs('bookings.index')" wire:navigate>
+                        {{ __('Booking') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>

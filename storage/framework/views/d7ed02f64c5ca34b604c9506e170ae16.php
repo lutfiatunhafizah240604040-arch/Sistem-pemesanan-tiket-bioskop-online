@@ -36,8 +36,6 @@ use Livewire\WithPagination;
 use App\Models\Booking;
 ?>
 
-﻿
-
 <div>
     <div class="max-w-7xl mx-auto space-y-4">
         <?php ob_start(); ?><div class="font-medium [:where(&amp;)]:text-zinc-800 [:where(&amp;)]:dark:text-white text-2xl [&amp;:has(+[data-flux-subheading])]:mb-2 [[data-flux-subheading]+&amp;]:mt-2 text-zinc-800 dark:text-white" data-flux-heading><?php ob_start(); ?>Bookings<?php echo trim(ob_get_clean()); ?></div>
@@ -314,4 +312,4 @@ use App\Models\Booking;
 <?php echo ltrim(ob_get_clean()); ?>
         </div>
     </div>
-</div><?php /**PATH C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\storage\framework\views/livewire/views/aae9821d.blade.php ENDPATH**/ ?>
+</div><?php /**PATH C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\storage\framework\views/livewire/views/534835b8.blade.php ENDPATH**/ ?>

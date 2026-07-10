@@ -17,19 +17,23 @@ I<!DOCTYPE html>
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
-<<<<<<< HEAD
-                    <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
-=======
-                        <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
 
->>>>>>> ea98cdc3d8e956702a6c83e862a10f113b06579b
-                        {{ __('Category') }}
+                    <flux:sidebar.item icon="film" :href="route('movies.index')" :current="request()->routeIs('movies.index')" wire:navigate>
+                        {{ __('Movies') }}
                     </flux:sidebar.item>
 
-                     <flux:sidebar.item icon="home" :href="route('bookings.index')" :current="request()->routeIs('bookings.index')" wire:navigate>
-                        {{ __('Booking') }}
-
+                    <flux:sidebar.item icon="video-camera" :href="route('showtimes.index')" :current="request()->routeIs('showtimes.index')" wire:navigate>
+                        {{ __('Showtimes') }}
                     </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="users" :href="route('seats.index')" :current="request()->routeIs('seats.index')" wire:navigate>
+                        {{ __('Seats') }}
+                    </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="ticket" :href="route('bookings.index')" :current="request()->routeIs('bookings.index')" wire:navigate>
+                        {{ __('Bookings') }}
+                    </flux:sidebar.item>
+                    
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 

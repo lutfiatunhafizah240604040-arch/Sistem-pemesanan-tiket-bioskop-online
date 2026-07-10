@@ -103,14 +103,15 @@ I<!DOCTYPE html>
 <?php if (! empty($__slotsStack708fcff799b79ca105082c33de5555ca)) { $__slots708fcff799b79ca105082c33de5555ca = array_pop($__slotsStack708fcff799b79ca105082c33de5555ca); } ?>
 <?php if (! empty($__attrsStack708fcff799b79ca105082c33de5555ca)) { $__attrs708fcff799b79ca105082c33de5555ca = array_pop($__attrsStack708fcff799b79ca105082c33de5555ca); } ?>
 <?php $__blaze->popData(); ?>
+
                     <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/708fcff799b79ca105082c33de5555ca.php'); ?>
 <?php if (isset($__slots708fcff799b79ca105082c33de5555ca)) { $__slotsStack708fcff799b79ca105082c33de5555ca[] = $__slots708fcff799b79ca105082c33de5555ca; } ?>
 <?php if (isset($__attrs708fcff799b79ca105082c33de5555ca)) { $__attrsStack708fcff799b79ca105082c33de5555ca[] = $__attrs708fcff799b79ca105082c33de5555ca; } ?>
-<?php $__attrs708fcff799b79ca105082c33de5555ca = ['icon' => 'home','href' => route('dashboard'),'current' => request()->routeIs('dashboard'),'wire:navigate' => true]; ?>
+<?php $__attrs708fcff799b79ca105082c33de5555ca = ['icon' => 'film','href' => route('movies.index'),'current' => request()->routeIs('movies.index'),'wire:navigate' => true]; ?>
 <?php $__slots708fcff799b79ca105082c33de5555ca = []; ?>
 <?php $__blaze->pushData($__attrs708fcff799b79ca105082c33de5555ca); ?>
 <?php ob_start(); ?>
-                        <?php echo e(__('Category')); ?>
+                        <?php echo e(__('Movies')); ?>
 
                     <?php $__slots708fcff799b79ca105082c33de5555ca['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
 <?php $__blaze->pushSlots($__slots708fcff799b79ca105082c33de5555ca); ?>
@@ -119,14 +120,14 @@ I<!DOCTYPE html>
 <?php if (! empty($__attrsStack708fcff799b79ca105082c33de5555ca)) { $__attrs708fcff799b79ca105082c33de5555ca = array_pop($__attrsStack708fcff799b79ca105082c33de5555ca); } ?>
 <?php $__blaze->popData(); ?>
 
-                     <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/708fcff799b79ca105082c33de5555ca.php'); ?>
+                    <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/708fcff799b79ca105082c33de5555ca.php'); ?>
 <?php if (isset($__slots708fcff799b79ca105082c33de5555ca)) { $__slotsStack708fcff799b79ca105082c33de5555ca[] = $__slots708fcff799b79ca105082c33de5555ca; } ?>
 <?php if (isset($__attrs708fcff799b79ca105082c33de5555ca)) { $__attrsStack708fcff799b79ca105082c33de5555ca[] = $__attrs708fcff799b79ca105082c33de5555ca; } ?>
-<?php $__attrs708fcff799b79ca105082c33de5555ca = ['icon' => 'home','href' => route('bookings.index'),'current' => request()->routeIs('bookings.index'),'wire:navigate' => true]; ?>
+<?php $__attrs708fcff799b79ca105082c33de5555ca = ['icon' => 'video-camera','href' => route('showtimes.index'),'current' => request()->routeIs('showtimes.index'),'wire:navigate' => true]; ?>
 <?php $__slots708fcff799b79ca105082c33de5555ca = []; ?>
 <?php $__blaze->pushData($__attrs708fcff799b79ca105082c33de5555ca); ?>
 <?php ob_start(); ?>
-                        <?php echo e(__('Booking')); ?>
+                        <?php echo e(__('Showtimes')); ?>
 
                     <?php $__slots708fcff799b79ca105082c33de5555ca['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
 <?php $__blaze->pushSlots($__slots708fcff799b79ca105082c33de5555ca); ?>
@@ -134,6 +135,39 @@ I<!DOCTYPE html>
 <?php if (! empty($__slotsStack708fcff799b79ca105082c33de5555ca)) { $__slots708fcff799b79ca105082c33de5555ca = array_pop($__slotsStack708fcff799b79ca105082c33de5555ca); } ?>
 <?php if (! empty($__attrsStack708fcff799b79ca105082c33de5555ca)) { $__attrs708fcff799b79ca105082c33de5555ca = array_pop($__attrsStack708fcff799b79ca105082c33de5555ca); } ?>
 <?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/708fcff799b79ca105082c33de5555ca.php'); ?>
+<?php if (isset($__slots708fcff799b79ca105082c33de5555ca)) { $__slotsStack708fcff799b79ca105082c33de5555ca[] = $__slots708fcff799b79ca105082c33de5555ca; } ?>
+<?php if (isset($__attrs708fcff799b79ca105082c33de5555ca)) { $__attrsStack708fcff799b79ca105082c33de5555ca[] = $__attrs708fcff799b79ca105082c33de5555ca; } ?>
+<?php $__attrs708fcff799b79ca105082c33de5555ca = ['icon' => 'users','href' => route('seats.index'),'current' => request()->routeIs('seats.index'),'wire:navigate' => true]; ?>
+<?php $__slots708fcff799b79ca105082c33de5555ca = []; ?>
+<?php $__blaze->pushData($__attrs708fcff799b79ca105082c33de5555ca); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Seats')); ?>
+
+                    <?php $__slots708fcff799b79ca105082c33de5555ca['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots708fcff799b79ca105082c33de5555ca); ?>
+<?php _708fcff799b79ca105082c33de5555ca($__blaze, $__attrs708fcff799b79ca105082c33de5555ca, $__slots708fcff799b79ca105082c33de5555ca, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack708fcff799b79ca105082c33de5555ca)) { $__slots708fcff799b79ca105082c33de5555ca = array_pop($__slotsStack708fcff799b79ca105082c33de5555ca); } ?>
+<?php if (! empty($__attrsStack708fcff799b79ca105082c33de5555ca)) { $__attrs708fcff799b79ca105082c33de5555ca = array_pop($__attrsStack708fcff799b79ca105082c33de5555ca); } ?>
+<?php $__blaze->popData(); ?>
+
+                    <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/708fcff799b79ca105082c33de5555ca.php'); ?>
+<?php if (isset($__slots708fcff799b79ca105082c33de5555ca)) { $__slotsStack708fcff799b79ca105082c33de5555ca[] = $__slots708fcff799b79ca105082c33de5555ca; } ?>
+<?php if (isset($__attrs708fcff799b79ca105082c33de5555ca)) { $__attrsStack708fcff799b79ca105082c33de5555ca[] = $__attrs708fcff799b79ca105082c33de5555ca; } ?>
+<?php $__attrs708fcff799b79ca105082c33de5555ca = ['icon' => 'ticket','href' => route('bookings.index'),'current' => request()->routeIs('bookings.index'),'wire:navigate' => true]; ?>
+<?php $__slots708fcff799b79ca105082c33de5555ca = []; ?>
+<?php $__blaze->pushData($__attrs708fcff799b79ca105082c33de5555ca); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Bookings')); ?>
+
+                    <?php $__slots708fcff799b79ca105082c33de5555ca['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots708fcff799b79ca105082c33de5555ca); ?>
+<?php _708fcff799b79ca105082c33de5555ca($__blaze, $__attrs708fcff799b79ca105082c33de5555ca, $__slots708fcff799b79ca105082c33de5555ca, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack708fcff799b79ca105082c33de5555ca)) { $__slots708fcff799b79ca105082c33de5555ca = array_pop($__slotsStack708fcff799b79ca105082c33de5555ca); } ?>
+<?php if (! empty($__attrsStack708fcff799b79ca105082c33de5555ca)) { $__attrs708fcff799b79ca105082c33de5555ca = array_pop($__attrsStack708fcff799b79ca105082c33de5555ca); } ?>
+<?php $__blaze->popData(); ?>
+                    
                 <?php $__slots98473bf3e84efd9e2855d4dafee36c71['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
 <?php $__blaze->pushSlots($__slots98473bf3e84efd9e2855d4dafee36c71); ?>
 <?php _98473bf3e84efd9e2855d4dafee36c71($__blaze, $__attrs98473bf3e84efd9e2855d4dafee36c71, $__slots98473bf3e84efd9e2855d4dafee36c71, ['heading'], [], $__this ?? (isset($this) ? $this : null)); ?>

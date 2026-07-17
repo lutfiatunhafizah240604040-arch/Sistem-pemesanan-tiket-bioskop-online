@@ -12,14 +12,18 @@ class SeatSeeder extends Seeder
      */
     public function run(): void
     {
-        // Membuat data contoh kursi baris A dan B untuk Studio 1
+        $existingSeats = Seat::where('studio_id', 1)->pluck('seat_number')->all();
         $seats = ['A1', 'A2', 'A3', 'A4', 'A5', 'B1', 'B2', 'B3', 'B4', 'B5'];
 
         foreach ($seats as $seatNumber) {
+            if (in_array($seatNumber, $existingSeats, true)) {
+                continue;
+            }
+
             Seat::create([
-                'studio_id' => 1, 
+                'studio_id' => 1,
                 'seat_number' => $seatNumber,
-                'is_available' => true, // true artinya kursi kosong/tersedia
+                'is_available' => true,
             ]);
         }
     }

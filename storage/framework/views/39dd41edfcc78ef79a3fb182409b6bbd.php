@@ -14,6 +14,7 @@
 <?php # [BlazeFolded]:{flux::menu.radio.group}:{C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/radio/group.blade.php}:{1776985208} ?>
 <?php # [BlazeFolded]:{flux::menu.separator}:{C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/separator.blade.php}:{1776985208} ?>
 <?php # [BlazeFolded]:{flux::menu.item}:{C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/item.blade.php}:{1776985208} ?>
+<?php # [BlazeFolded]:{flux::menu.item}:{C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/item.blade.php}:{1776985208} ?>
 <?php # [BlazeFolded]:{flux::menu}:{C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/menu/index.blade.php}:{1776985208} ?>
 <?php # [BlazeFolded]:{flux::dropdown}:{C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/dropdown.blade.php}:{1776985208} ?>
 <?php # [BlazeFolded]:{flux::header}:{C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/header.blade.php}:{1776985208} ?>
@@ -136,21 +137,23 @@ I<!DOCTYPE html>
 <?php if (! empty($__attrsStack708fcff799b79ca105082c33de5555ca)) { $__attrs708fcff799b79ca105082c33de5555ca = array_pop($__attrsStack708fcff799b79ca105082c33de5555ca); } ?>
 <?php $__blaze->popData(); ?>
 
-                    <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/708fcff799b79ca105082c33de5555ca.php'); ?>
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->user()?->isAdmin()): ?>
+                        <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/708fcff799b79ca105082c33de5555ca.php'); ?>
 <?php if (isset($__slots708fcff799b79ca105082c33de5555ca)) { $__slotsStack708fcff799b79ca105082c33de5555ca[] = $__slots708fcff799b79ca105082c33de5555ca; } ?>
 <?php if (isset($__attrs708fcff799b79ca105082c33de5555ca)) { $__attrsStack708fcff799b79ca105082c33de5555ca[] = $__attrs708fcff799b79ca105082c33de5555ca; } ?>
 <?php $__attrs708fcff799b79ca105082c33de5555ca = ['icon' => 'users','href' => route('seats.index'),'current' => request()->routeIs('seats.index'),'wire:navigate' => true]; ?>
 <?php $__slots708fcff799b79ca105082c33de5555ca = []; ?>
 <?php $__blaze->pushData($__attrs708fcff799b79ca105082c33de5555ca); ?>
 <?php ob_start(); ?>
-                        <?php echo e(__('Seats')); ?>
+                            <?php echo e(__('Seats')); ?>
 
-                    <?php $__slots708fcff799b79ca105082c33de5555ca['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+                        <?php $__slots708fcff799b79ca105082c33de5555ca['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
 <?php $__blaze->pushSlots($__slots708fcff799b79ca105082c33de5555ca); ?>
 <?php _708fcff799b79ca105082c33de5555ca($__blaze, $__attrs708fcff799b79ca105082c33de5555ca, $__slots708fcff799b79ca105082c33de5555ca, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
 <?php if (! empty($__slotsStack708fcff799b79ca105082c33de5555ca)) { $__slots708fcff799b79ca105082c33de5555ca = array_pop($__slotsStack708fcff799b79ca105082c33de5555ca); } ?>
 <?php if (! empty($__attrsStack708fcff799b79ca105082c33de5555ca)) { $__attrs708fcff799b79ca105082c33de5555ca = array_pop($__attrsStack708fcff799b79ca105082c33de5555ca); } ?>
 <?php $__blaze->popData(); ?>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
                     <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/708fcff799b79ca105082c33de5555ca.php'); ?>
 <?php if (isset($__slots708fcff799b79ca105082c33de5555ca)) { $__slotsStack708fcff799b79ca105082c33de5555ca[] = $__slots708fcff799b79ca105082c33de5555ca; } ?>
@@ -167,7 +170,22 @@ I<!DOCTYPE html>
 <?php if (! empty($__slotsStack708fcff799b79ca105082c33de5555ca)) { $__slots708fcff799b79ca105082c33de5555ca = array_pop($__slotsStack708fcff799b79ca105082c33de5555ca); } ?>
 <?php if (! empty($__attrsStack708fcff799b79ca105082c33de5555ca)) { $__attrs708fcff799b79ca105082c33de5555ca = array_pop($__attrsStack708fcff799b79ca105082c33de5555ca); } ?>
 <?php $__blaze->popData(); ?>
-                    
+
+                    <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/sidebar/item.blade.php', $__blaze->compiledPath.'/708fcff799b79ca105082c33de5555ca.php'); ?>
+<?php if (isset($__slots708fcff799b79ca105082c33de5555ca)) { $__slotsStack708fcff799b79ca105082c33de5555ca[] = $__slots708fcff799b79ca105082c33de5555ca; } ?>
+<?php if (isset($__attrs708fcff799b79ca105082c33de5555ca)) { $__attrsStack708fcff799b79ca105082c33de5555ca[] = $__attrs708fcff799b79ca105082c33de5555ca; } ?>
+<?php $__attrs708fcff799b79ca105082c33de5555ca = ['icon' => 'credit-card','href' => route('payments.index'),'current' => request()->routeIs('payments.index'),'wire:navigate' => true]; ?>
+<?php $__slots708fcff799b79ca105082c33de5555ca = []; ?>
+<?php $__blaze->pushData($__attrs708fcff799b79ca105082c33de5555ca); ?>
+<?php ob_start(); ?>
+                        <?php echo e(__('Payments')); ?>
+
+                    <?php $__slots708fcff799b79ca105082c33de5555ca['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slots708fcff799b79ca105082c33de5555ca); ?>
+<?php _708fcff799b79ca105082c33de5555ca($__blaze, $__attrs708fcff799b79ca105082c33de5555ca, $__slots708fcff799b79ca105082c33de5555ca, ['href', 'current', 'wire:navigate'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStack708fcff799b79ca105082c33de5555ca)) { $__slots708fcff799b79ca105082c33de5555ca = array_pop($__slotsStack708fcff799b79ca105082c33de5555ca); } ?>
+<?php if (! empty($__attrsStack708fcff799b79ca105082c33de5555ca)) { $__attrs708fcff799b79ca105082c33de5555ca = array_pop($__attrsStack708fcff799b79ca105082c33de5555ca); } ?>
+<?php $__blaze->popData(); ?>
                 <?php $__slots98473bf3e84efd9e2855d4dafee36c71['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
 <?php $__blaze->pushSlots($__slots98473bf3e84efd9e2855d4dafee36c71); ?>
 <?php _98473bf3e84efd9e2855d4dafee36c71($__blaze, $__attrs98473bf3e84efd9e2855d4dafee36c71, $__slots98473bf3e84efd9e2855d4dafee36c71, ['heading'], [], $__this ?? (isset($this) ? $this : null)); ?>
@@ -319,6 +337,22 @@ I<!DOCTYPE html>
     <div data-orientation="horizontal" role="none" class="border-0 [print-color-adjust:exact] bg-zinc-800/15 dark:bg-white/20 h-px w-full dark:bg-zinc-600!" data-flux-separator></div>
 </div>
 <?php echo ltrim(ob_get_clean()); ?>
+                    <form method="POST" action="<?php echo e(route('switch.role')); ?>" class="w-full">
+                        <?php echo csrf_field(); ?>
+                        <?php ob_start(); ?><button type="submit" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current w-full cursor-pointer" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon">
+        <svg class="shrink-0 [:where(&amp;)]:size-5 me-2" data-flux-menu-item-icon="data-flux-menu-item-icon" data-flux-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M13.2 2.24a.75.75 0 0 0 .04 1.06l2.1 1.95H6.75a.75.75 0 0 0 0 1.5h8.59l-2.1 1.95a.75.75 0 1 0 1.02 1.1l3.5-3.25a.75.75 0 0 0 0-1.1l-3.5-3.25a.75.75 0 0 0-1.06.04Zm-6.4 8a.75.75 0 0 0-1.06-.04l-3.5 3.25a.75.75 0 0 0 0 1.1l3.5 3.25a.75.75 0 1 0 1.02-1.1l-2.1-1.95h8.59a.75.75 0 0 0 0-1.5H4.66l2.1-1.95a.75.75 0 0 0 .04-1.06Z" clip-rule="evenodd"/>
+</svg>
+
+            
+    <?php ob_start(); ?>
+                            <?php echo e(auth()->user()?->role === 'admin' ? __('Switch to User') : __('Switch to Admin')); ?>
+
+                        <?php echo trim(ob_get_clean()); ?>
+
+    </button>
+<?php echo ltrim(ob_get_clean()); ?>
+                    </form>
                     <form method="POST" action="<?php echo e(route('logout')); ?>" class="w-full">
                         <?php echo csrf_field(); ?>
                         <?php ob_start(); ?><button type="submit" class="flex items-center px-2 py-1.5 w-full focus:outline-hidden rounded-md text-start text-sm font-medium [&amp;[disabled]]:opacity-50 text-zinc-800 data-active:bg-zinc-50 dark:text-white dark:data-active:bg-zinc-600 **:data-flux-menu-item-icon:text-zinc-400 dark:**:data-flux-menu-item-icon:text-white/60 [&amp;[data-active]_[data-flux-menu-item-icon]]:text-current w-full cursor-pointer" data-flux-menu-item="data-flux-menu-item" data-flux-menu-item-has-icon="data-flux-menu-item-has-icon">

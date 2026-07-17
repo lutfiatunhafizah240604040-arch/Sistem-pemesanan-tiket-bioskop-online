@@ -121,9 +121,11 @@ new class extends Component
         <hr class="border-zinc-200 dark:border-zinc-800" />
 
         <div class="space-y-4">
-            <div class="flex justify-start">
-                <flux:button variant="primary" icon="plus" wire:click="create">Add Showtime</flux:button>
-            </div>
+            @if (auth()->user()?->isAdmin())
+                <div class="flex justify-start">
+                    <flux:button variant="primary" icon="plus" wire:click="create">Add Showtime</flux:button>
+                </div>
+            @endif
 
             <div class="overflow-x-auto rounded-lg border border-zinc-200 bg-white shadow-sm px-2">
                 <flux:table :paginate="$this->showtimes">
@@ -168,14 +170,18 @@ new class extends Component
                                 </flux:table.cell>
 
                                 <flux:table.cell>
-                                    <flux:dropdown>
-                                        <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
-                                        <flux:menu>
-                                            <flux:menu.item icon="pencil" wire:click="edit({{ $showtime->id }})">Edit</flux:menu.item>
-                                            <flux:menu.separator />
-                                            <flux:menu.item variant="danger" icon="trash" wire:click="delete({{ $showtime->id }})" wire:confirm="Are you sure?">Delete</flux:menu.item>
-                                        </flux:menu>
-                                    </flux:dropdown>
+                                    @if (auth()->user()?->isAdmin())
+                                        <flux:dropdown>
+                                            <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
+                                            <flux:menu>
+                                                <flux:menu.item icon="pencil" wire:click="edit({{ $showtime->id }})">Edit</flux:menu.item>
+                                                <flux:menu.separator />
+                                                <flux:menu.item variant="danger" icon="trash" wire:click="delete({{ $showtime->id }})" wire:confirm="Are you sure?">Delete</flux:menu.item>
+                                            </flux:menu>
+                                        </flux:dropdown>
+                                    @else
+                                        <span class="text-xs text-zinc-400">Read-only</span>
+                                    @endif
                                 </flux:table.cell>
 
                             </flux:table.row>
@@ -203,11 +209,31 @@ new class extends Component
                     @error('movie_id') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                 </div>
 
-                <flux:input wire:model="cinema_name" label="Cinema Name" placeholder="e.g. Grand XXI" required />
-                @error('cinema_name') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-zinc-800 dark:text-zinc-200">Cinema Name</label>
+                    <select wire:model="cinema_name" class="w-full rounded-lg border border-zinc-200 p-2 text-sm dark:bg-zinc-800 dark:border-zinc-700 bg-white" required>
+                        <option value="">-- Choose Cinema --</option>
+                        <option value="CGV Cinemas">CGV Cinemas</option>
+                        <option value="XXI">XXI</option>
+                        <option value="Cinepolis">Cinepolis</option>
+                        <option value="Cinema 21">Cinema 21</option>
+                        <option value="Grand XXI">Grand XXI</option>
+                    </select>
+                    @error('cinema_name') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+                </div>
 
-                <flux:input wire:model="studio_name" label="Studio Name" placeholder="e.g. Studio 1" required />
-                @error('studio_name') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-zinc-800 dark:text-zinc-200">Studio Name</label>
+                    <select wire:model="studio_name" class="w-full rounded-lg border border-zinc-200 p-2 text-sm dark:bg-zinc-800 dark:border-zinc-700 bg-white" required>
+                        <option value="">-- Choose Studio --</option>
+                        <option value="Studio 1">Studio 1</option>
+                        <option value="Studio 2">Studio 2</option>
+                        <option value="Studio 3">Studio 3</option>
+                        <option value="Studio 4">Studio 4</option>
+                        <option value="Studio 5">Studio 5</option>
+                    </select>
+                    @error('studio_name') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+                </div>
 
                 <flux:input wire:model="show_time" type="datetime-local" label="Showtime Date & Time" required />
                 @error('show_time') <span class="text-xs text-red-500">{{ $message }}</span> @enderror

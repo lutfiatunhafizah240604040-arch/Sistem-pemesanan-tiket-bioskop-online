@@ -17,12 +17,20 @@ new class extends Component
     // Mengambil data saat halaman dimuat
     public function with(): array
     {
+        $activeShowtime = Showtimes::find($this->showtime_id);
+
+        $seatsQuery = Seat::query();
+        if ($activeShowtime) {
+            $seatsQuery->where('studio_id', 1);
+        } else {
+            $seatsQuery->whereNull('id');
+        }
+
         return [
-            'showtimes' => Showtimes::with('movie')->get(), 
-            // Ambil semua kursi, kelompokkan berdasarkan baris (A, B, dst) untuk denah
-            'seats' => Seat::all()->groupBy(function($item) {
+            'showtimes' => Showtimes::with('movie')->get(),
+            'seats' => $seatsQuery->get()->groupBy(function ($item) {
                 return substr($item->seat_number, 0, 1);
-            })
+            }),
         ];
     }
 
@@ -95,13 +103,16 @@ new class extends Component
 };
 ?>
 
+<!-- Memastikan Tailwind CSS ter-load dengan sempurna untuk layout luar -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
 <div class="p-6 bg-white rounded-lg shadow max-w-4xl mx-auto mt-6">
     <h2 class="text-2xl font-bold mb-4">Pemesanan Tiket Online</h2>
 
     @if (session()->has('success'))
-        <div role="alert" style="position: fixed; top: 30px; right: 30px; z-index: 99999; display: flex; align-items: center; width: 100%; max-width: 340px; padding: 16px; color: #1f2937; background-color: #ffffff; border-radius: 8px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-l: 4px solid #10b981;">
+        <div role="alert" style="position: fixed; top: 30px; right: 30px; z-index: 99999; display: flex; align-items: center; width: 100%; max-width: 340px; padding: 16px; color: #1f2937; background-color: #ffffff; border-radius: 8px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-left: 4px solid #10b981;">
             <div style="display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; color: #10b981; background-color: #d1fae5; border-radius: 6px;">
-                <svg style="width: 20 h: 20" class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <svg style="width: 20px; height: 20px" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                 </svg>
             </div>
@@ -112,9 +123,9 @@ new class extends Component
     @endif
 
     @if (session()->has('error'))
-        <div role="alert" style="position: fixed; top: 30px; right: 30px; z-index: 99999; display: flex; align-items: center; width: 100%; max-width: 340px; padding: 16px; color: #1f2937; background-color: #ffffff; border-radius: 8px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-l: 4px solid #ef4444;">
+        <div role="alert" style="position: fixed; top: 30px; right: 30px; z-index: 99999; display: flex; align-items: center; width: 100%; max-width: 340px; padding: 16px; color: #1f2937; background-color: #ffffff; border-radius: 8px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-left: 4px solid #ef4444;">
             <div style="display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; width: 32px; height: 32px; color: #ef4444; background-color: #fee2e2; border-radius: 6px;">
-                <svg style="width: 20 h: 20" class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <svg style="width: 20px; height: 20px" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
                 </svg>
             </div>
@@ -137,40 +148,65 @@ new class extends Component
     </div>
 
     @if($showtime_id && $showtime_id != '')
-        <div class="w-full bg-gray-300 text-center text-xs font-bold py-2 rounded mb-10 tracking-widest text-gray-600">
-            LAYAR UTAMA
-        </div>
+        <div style="max-width: 600px; margin-left: auto; margin-right: auto; margin-top: 32px;">
+            <div class="mb-8 w-full rounded-b-3xl bg-zinc-300 py-3 text-center text-xs font-bold tracking-widest text-zinc-700 shadow-inner">
+                LAYAR UTAMA / SCREEN
+            </div>
 
-        <div class="space-y-4 mb-8">
-            @foreach($seats as $row => $rowSeats)
-                <div class="flex justify-center gap-4 items-center">
-                    @foreach($rowSeats as $seat)
-                        @php
-                            $isChosen = in_array($seat->id, $selectedSeats);
-                            $isAvailable = $seat->is_available;
-                            
-                            $btnClass = 'w-16 py-2 text-center rounded text-xs font-semibold transition-colors ';
-                            if (!$isAvailable) {
-                                $btnClass .= 'bg-red-500 text-white cursor-not-allowed'; 
-                            } elseif ($isChosen) {
-                                $btnClass .= 'bg-blue-600 text-white'; 
-                            } else {
-                                $btnClass .= 'bg-gray-100 text-gray-800 hover:bg-gray-200'; 
-                            }
-                        @endphp
+            <!-- Wadah Baris Kursi (Menggunakan CSS Murni agar pasti Vertikal ke Bawah per Baris) -->
+            <div style="display: flex; flex-direction: column; gap: 24px; width: 100%; align-items: center;">
+                @foreach($seats as $row => $rowSeats)
+                    <!-- Baris Kontainer: Menyatukan Label Huruf dan Barisan Kursi -->
+                    <div style="display: flex; align-items: center; gap: 16px; justify-content: center; width: 100%;">
+                        
+                        <!-- Label Huruf Baris (A, B, dll) -->
+                        <div style="width: 24px; text-align: center; font-size: 14px; font-weight: bold; color: #71717a;">
+                            {{ $row }}
+                        </div>
+                        
+                        <!-- KUNCI UTAMA: Grid Murni CSS 5 Kolom Horizontal Berjejer ke Samping -->
+                        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;">
+                            @foreach($rowSeats as $seat)
+                                @php
+                                    $isChosen = in_array($seat->id, $selectedSeats);
+                                    $isAvailable = $seat->is_available;
 
-                        <button 
-                            wire:click="toggleSeat({{ $seat->id }})"
-                            @if(!$isAvailable) disabled @endif
-                            class="{{ $btnClass }}">
-                            <div>{{ $seat->seat_number }}</div>
-                            <span class="text-[10px] block font-normal">
-                                {{ !$isAvailable ? 'TERISI' : ($isChosen ? 'DIPILIH' : 'TERSEDIA') }}
-                            </span>
-                        </button>
-                    @endforeach
-                </div>
-            @endforeach
+                                    // Base inline style untuk kotak kursi bioskop
+                                    $btnStyle = 'width: 75px; padding-top: 10px; padding-bottom: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 8px; font-size: 13px; font-weight: bold; border: 1px solid #e4e4e7; transition: transform 0.15s ease; cursor: pointer;';
+                                    
+                                    if (!$isAvailable) {
+                                        $btnStyle .= ' background-color: #f4f4f5; color: #a1a1aa; cursor: not-allowed;';
+                                    } elseif ($isChosen) {
+                                        $btnStyle .= ' background-color: #2563eb; color: #ffffff; border-color: #2563eb;';
+                                    } else {
+                                        $btnStyle .= ' background-color: #f4f4f5; color: #18181b;';
+                                    }
+                                @endphp
+
+                                <button
+                                    wire:click="toggleSeat({{ $seat->id }})"
+                                    @if(!$isAvailable) disabled @endif
+                                    style="{{ $btnStyle }}"
+                                    onmouseover="this.style.transform='scale(1.05)'"
+                                    onmouseout="this.style.transform='scale(1)'">
+                                    
+                                    <!-- Nomor Kursi (Atas) -->
+                                    <div>{{ $seat->seat_number }}</div>
+                                    
+                                    <!-- Label Teks Status (Bawah) -->
+                                    @if(!$isAvailable)
+                                        <span style="font-size: 9px; color: #ef4444; font-weight: normal; margin-top: 4px; display: block;">TERISI</span>
+                                    @elseif($isChosen)
+                                        <span style="font-size: 9px; color: #bfdbfe; font-weight: normal; margin-top: 4px; display: block;">PILIH</span>
+                                    @else
+                                        <span style="font-size: 9px; color: #a1a1aa; font-weight: normal; margin-top: 4px; display: block;">TERSEDIA</span>
+                                    @endif
+                                </button>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
         </div>
     @else
         <div class="text-center py-12 text-gray-400 text-sm italic border border-dashed rounded-lg mb-8">

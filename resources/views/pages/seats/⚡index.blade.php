@@ -5,7 +5,6 @@ use App\Models\Seat;
 
 new class extends Component
 {
-    // 1. Fungsi untuk mengambil data kursi Studio 1 saat halaman dimuat
     public function with(): array
     {
         return [
@@ -13,14 +12,12 @@ new class extends Component
         ];
     }
 
-    // 2. Fungsi Baru: Mengubah status ketersediaan kursi saat diklik
-    public function toggleSeat($seatId)
+    public function toggleSeat($seatId): void
     {
         $seat = Seat::find($seatId);
-        
+
         if ($seat) {
-            // Membalikkan status: jika true jadi false, jika false jadi true
-            $seat->is_available = !$seat->is_available;
+            $seat->is_available = ! $seat->is_available;
             $seat->save();
         }
     }
@@ -30,7 +27,14 @@ new class extends Component
     <div class="flex justify-between items-center">
         <div>
             <flux:heading level="1" size="xl">Kelola Kursi (Seats)</flux:heading>
-            <flux:subheading>Konfigurasi Denah Kursi Studio 1 (Klik kursi untuk mengubah status)</flux:subheading>
+            <flux:subheading>
+                Konfigurasi Denah Kursi Studio 1 
+                @if(auth()->user()?->isAdmin()) 
+                    (Klik kursi untuk mengubah status) 
+                @else 
+                    (Mode lihat saja untuk pelanggan) 
+                @endif
+            </flux:subheading>
         </div>
     </div>
 
@@ -46,16 +50,30 @@ new class extends Component
         <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px 12px; justify-items: center;">
             @forelse ($seats as $seat)
                 <div class="flex flex-col items-center w-full">
-                    <flux:button 
-                        variant="filled" 
-                        :color="$seat->is_available ? 'indigo' : 'red'" 
-                        size="sm" 
-                        wire:click="toggleSeat({{ $seat->id }})"
-                        class="w-12 h-12 flex items-center justify-center font-semibold rounded-lg shadow-sm hover:scale-105 transition-transform cursor-pointer"
-                    >
-                        {{ $seat->seat_number }}
-                    </flux:button>
                     
+                    @if (auth()->user()?->isAdmin())
+                        {{-- Tombol untuk Admin (Bisa di-klik untuk mengubah status) --}}
+                        <flux:button
+                            variant="filled"
+                            :color="$seat->is_available ? 'indigo' : 'red'"
+                            size="sm"
+                            wire:click="toggleSeat({{ $seat->id }})"
+                            class="w-12 h-12 flex items-center justify-center font-semibold rounded-lg shadow-sm hover:scale-105 transition-transform cursor-pointer"
+                        >
+                            {{ $seat->seat_number }}
+                        </flux:button>
+                    @else
+                        {{-- Tombol untuk Pelanggan / Guest (Hanya lihat saja) --}}
+                        <flux:button
+                            variant="filled"
+                            :color="$seat->is_available ? 'indigo' : 'red'"
+                            size="sm"
+                            class="w-12 h-12 flex items-center justify-center font-semibold rounded-lg shadow-sm cursor-default select-none pointer-events-none"
+                        >
+                            {{ $seat->seat_number }}
+                        </flux:button>
+                    @endif
+
                     <span class="text-[9px] mt-1.5 uppercase font-bold tracking-wider {{ $seat->is_available ? 'text-zinc-400' : 'text-red-500' }}">
                         {{ $seat->is_available ? 'Tersedia' : 'Terisi' }}
                     </span>

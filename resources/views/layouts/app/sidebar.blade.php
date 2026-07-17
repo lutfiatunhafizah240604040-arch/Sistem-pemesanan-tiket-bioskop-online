@@ -26,14 +26,19 @@ I<!DOCTYPE html>
                         {{ __('Showtimes') }}
                     </flux:sidebar.item>
 
-                    <flux:sidebar.item icon="users" :href="route('seats.index')" :current="request()->routeIs('seats.index')" wire:navigate>
-                        {{ __('Seats') }}
-                    </flux:sidebar.item>
+                    @if (auth()->user()?->isAdmin())
+                        <flux:sidebar.item icon="users" :href="route('seats.index')" :current="request()->routeIs('seats.index')" wire:navigate>
+                            {{ __('Seats') }}
+                        </flux:sidebar.item>
+                    @endif
 
                     <flux:sidebar.item icon="ticket" :href="route('bookings.index')" :current="request()->routeIs('bookings.index')" wire:navigate>
                         {{ __('Bookings') }}
                     </flux:sidebar.item>
-                    
+
+                    <flux:sidebar.item icon="credit-card" :href="route('payments.index')" :current="request()->routeIs('payments.index')" wire:navigate>
+                        {{ __('Payments') }}
+                    </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 
@@ -82,6 +87,12 @@ I<!DOCTYPE html>
                         </flux:menu.item>
                     </flux:menu.radio.group>
                     <flux:menu.separator />
+                    <form method="POST" action="{{ route('switch.role') }}" class="w-full">
+                        @csrf
+                        <flux:menu.item as="button" type="submit" icon="arrows-right-left" class="w-full cursor-pointer">
+                            {{ auth()->user()?->role === 'admin' ? __('Switch to User') : __('Switch to Admin') }}
+                        </flux:menu.item>
+                    </form>
                     <form method="POST" action="{{ route('logout') }}" class="w-full">
                         @csrf
                         <flux:menu.item as="button" type="submit" icon="arrow-right-start-on-rectangle" class="w-full cursor-pointer">

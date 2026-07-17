@@ -13,7 +13,14 @@ use App\Models\Seat;
 
         <?php echo ltrim(ob_get_clean()); ?>
             <?php ob_start(); ?><div class="text-sm [:where(&amp;)]:text-zinc-500 [:where(&amp;)]:dark:text-white/70" data-flux-subheading>
-    <?php ob_start(); ?>Konfigurasi Denah Kursi Studio 1 (Klik kursi untuk mengubah status)<?php echo trim(ob_get_clean()); ?>
+    <?php ob_start(); ?>
+                Konfigurasi Denah Kursi Studio 1 
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->user()?->isAdmin()): ?> 
+                    (Klik kursi untuk mengubah status) 
+                <?php else: ?> 
+                    (Mode lihat saja untuk pelanggan) 
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            <?php echo trim(ob_get_clean()); ?>
 
 </div>
 <?php echo ltrim(ob_get_clean()); ?>
@@ -33,22 +40,43 @@ use App\Models\Seat;
         <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 20px 12px; justify-items: center;">
             <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__empty_1 = true; $__currentLoopData = $seats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $seat): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
                 <div class="flex flex-col items-center w-full">
-                    <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/button/index.blade.php', $__blaze->compiledPath.'/d9e50dd29c8b86433c4fc4e05a9555fb.php'); ?>
+                    
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->user()?->isAdmin()): ?>
+                        
+                        <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/button/index.blade.php', $__blaze->compiledPath.'/d9e50dd29c8b86433c4fc4e05a9555fb.php'); ?>
 <?php if (isset($__slotsd9e50dd29c8b86433c4fc4e05a9555fb)) { $__slotsStackd9e50dd29c8b86433c4fc4e05a9555fb[] = $__slotsd9e50dd29c8b86433c4fc4e05a9555fb; } ?>
 <?php if (isset($__attrsd9e50dd29c8b86433c4fc4e05a9555fb)) { $__attrsStackd9e50dd29c8b86433c4fc4e05a9555fb[] = $__attrsd9e50dd29c8b86433c4fc4e05a9555fb; } ?>
 <?php $__attrsd9e50dd29c8b86433c4fc4e05a9555fb = ['variant' => 'filled','color' => $seat->is_available ? 'indigo' : 'red','size' => 'sm','wire:click' => 'toggleSeat('.e($seat->id).')','class' => 'w-12 h-12 flex items-center justify-center font-semibold rounded-lg shadow-sm hover:scale-105 transition-transform cursor-pointer']; ?>
 <?php $__slotsd9e50dd29c8b86433c4fc4e05a9555fb = []; ?>
 <?php $__blaze->pushData($__attrsd9e50dd29c8b86433c4fc4e05a9555fb); ?>
 <?php ob_start(); ?>
-                        <?php echo e($seat->seat_number); ?>
+                            <?php echo e($seat->seat_number); ?>
 
-                    <?php $__slotsd9e50dd29c8b86433c4fc4e05a9555fb['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+                        <?php $__slotsd9e50dd29c8b86433c4fc4e05a9555fb['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
 <?php $__blaze->pushSlots($__slotsd9e50dd29c8b86433c4fc4e05a9555fb); ?>
 <?php _d9e50dd29c8b86433c4fc4e05a9555fb($__blaze, $__attrsd9e50dd29c8b86433c4fc4e05a9555fb, $__slotsd9e50dd29c8b86433c4fc4e05a9555fb, ['color'], [], $__this ?? (isset($this) ? $this : null)); ?>
 <?php if (! empty($__slotsStackd9e50dd29c8b86433c4fc4e05a9555fb)) { $__slotsd9e50dd29c8b86433c4fc4e05a9555fb = array_pop($__slotsStackd9e50dd29c8b86433c4fc4e05a9555fb); } ?>
 <?php if (! empty($__attrsStackd9e50dd29c8b86433c4fc4e05a9555fb)) { $__attrsd9e50dd29c8b86433c4fc4e05a9555fb = array_pop($__attrsStackd9e50dd29c8b86433c4fc4e05a9555fb); } ?>
 <?php $__blaze->popData(); ?>
-                    
+                    <?php else: ?>
+                        
+                        <?php $__blaze->ensureRequired('C:\laragon\www\Sistem-pemesanan-tiket-bioskop-online\vendor\livewire\flux\src/../stubs/resources/views/flux/button/index.blade.php', $__blaze->compiledPath.'/d9e50dd29c8b86433c4fc4e05a9555fb.php'); ?>
+<?php if (isset($__slotsd9e50dd29c8b86433c4fc4e05a9555fb)) { $__slotsStackd9e50dd29c8b86433c4fc4e05a9555fb[] = $__slotsd9e50dd29c8b86433c4fc4e05a9555fb; } ?>
+<?php if (isset($__attrsd9e50dd29c8b86433c4fc4e05a9555fb)) { $__attrsStackd9e50dd29c8b86433c4fc4e05a9555fb[] = $__attrsd9e50dd29c8b86433c4fc4e05a9555fb; } ?>
+<?php $__attrsd9e50dd29c8b86433c4fc4e05a9555fb = ['variant' => 'filled','color' => $seat->is_available ? 'indigo' : 'red','size' => 'sm','class' => 'w-12 h-12 flex items-center justify-center font-semibold rounded-lg shadow-sm cursor-default select-none pointer-events-none']; ?>
+<?php $__slotsd9e50dd29c8b86433c4fc4e05a9555fb = []; ?>
+<?php $__blaze->pushData($__attrsd9e50dd29c8b86433c4fc4e05a9555fb); ?>
+<?php ob_start(); ?>
+                            <?php echo e($seat->seat_number); ?>
+
+                        <?php $__slotsd9e50dd29c8b86433c4fc4e05a9555fb['slot'] = new \Illuminate\View\ComponentSlot(trim(ob_get_clean()), []); ?>
+<?php $__blaze->pushSlots($__slotsd9e50dd29c8b86433c4fc4e05a9555fb); ?>
+<?php _d9e50dd29c8b86433c4fc4e05a9555fb($__blaze, $__attrsd9e50dd29c8b86433c4fc4e05a9555fb, $__slotsd9e50dd29c8b86433c4fc4e05a9555fb, ['color'], [], $__this ?? (isset($this) ? $this : null)); ?>
+<?php if (! empty($__slotsStackd9e50dd29c8b86433c4fc4e05a9555fb)) { $__slotsd9e50dd29c8b86433c4fc4e05a9555fb = array_pop($__slotsStackd9e50dd29c8b86433c4fc4e05a9555fb); } ?>
+<?php if (! empty($__attrsStackd9e50dd29c8b86433c4fc4e05a9555fb)) { $__attrsd9e50dd29c8b86433c4fc4e05a9555fb = array_pop($__attrsStackd9e50dd29c8b86433c4fc4e05a9555fb); } ?>
+<?php $__blaze->popData(); ?>
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
                     <span class="text-[9px] mt-1.5 uppercase font-bold tracking-wider <?php echo e($seat->is_available ? 'text-zinc-400' : 'text-red-500'); ?>">
                         <?php echo e($seat->is_available ? 'Tersedia' : 'Terisi'); ?>
 

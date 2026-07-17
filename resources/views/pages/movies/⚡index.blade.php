@@ -149,9 +149,11 @@ new class extends Component
         <hr class="border-zinc-200 dark:border-zinc-800" />
 
         <div class="space-y-4">
-            <div class="flex justify-start">
-                <flux:button variant="primary" icon="plus" wire:click="create">Add Movies</flux:button>
-            </div>
+            @if (auth()->user()?->isAdmin())
+                <div class="flex justify-start">
+                    <flux:button variant="primary" icon="plus" wire:click="create">Add Movies</flux:button>
+                </div>
+            @endif
 
             <div class="overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-sm px-2">
                 <flux:table :paginate="$this->movies">
@@ -209,14 +211,18 @@ new class extends Component
                                 </flux:table.cell>
 
                                 <flux:table.cell>
-                                    <flux:dropdown>
-                                        <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
-                                        <flux:menu>
-                                            <flux:menu.item icon="pencil" wire:click="edit({{ $movie->id }})">Edit</flux:menu.item>
-                                            <flux:menu.separator />
-                                            <flux:menu.item variant="danger" icon="trash" wire:click="delete({{ $movie->id }})" wire:confirm="Are you sure you want to delete this movie?">Delete</flux:menu.item>
-                                        </flux:menu>
-                                    </flux:dropdown>
+                                    @if (auth()->user()?->isAdmin())
+                                        <flux:dropdown>
+                                            <flux:button variant="ghost" size="sm" icon="ellipsis-horizontal" inset="top bottom"></flux:button>
+                                            <flux:menu>
+                                                <flux:menu.item icon="pencil" wire:click="edit({{ $movie->id }})">Edit</flux:menu.item>
+                                                <flux:menu.separator />
+                                                <flux:menu.item variant="danger" icon="trash" wire:click="delete({{ $movie->id }})" wire:confirm="Are you sure you want to delete this movie?">Delete</flux:menu.item>
+                                            </flux:menu>
+                                        </flux:dropdown>
+                                    @else
+                                        <span class="text-xs text-zinc-400">Read-only</span>
+                                    @endif
                                 </flux:table.cell>
 
                             </flux:table.row>
